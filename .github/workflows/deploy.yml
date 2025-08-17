@@ -1,4 +1,4 @@
-name: Build and Deploy Kasm Registry
+name: Build and deploy Kasm Registry
 
 on:
   push:

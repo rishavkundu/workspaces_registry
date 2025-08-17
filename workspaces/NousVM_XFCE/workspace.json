@@ -1,5 +1,5 @@
 {
-	"description": "NousVM Debian XFCE desktop with KasmVNC, minimal tools, and Hermes agent for enhanced functionality.",
+	"description": "NousVM Debian XFCE desktop with KasmVNC, minimal tools, and Hermes agent.",
 	"docker_registry": "https://ghcr.io",
 	"image_src": "nousvm-xfce.png",
 	"run_config": {
@@ -23,7 +23,7 @@
 			"version": "1.17.x",
 			"image": "ghcr.io/rishavkundu/nousvm-xfce:1.17.0",
 			"uncompressed_size_mb": 0,
-			"available_tags": ["1.17.0", "latest"]
+			"available_tags": ["develop", "1.17.0", "latest"]
 		}
 	],
 	"persistent_profile_path": "/home/kasm-user",
