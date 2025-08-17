@@ -1,26 +1,53 @@
-name: Build
+name: Build and Deploy Kasm Registry
 
 on:
   push:
     branches-ignore:
-      - 'gh-pages'
+      - gh-pages
+  workflow_dispatch: {}
+
 permissions:
   contents: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Build # Have to run processing first so the list.json exists to be included in the the deploy
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+          cache-dependency-path: |
+            processing/package-lock.json
+            site/package-lock.json
+
+      - name: Install deps and build all branches
         run: |
-          npm ci --prefix processing 
+          npm ci --prefix processing
           npm ci --prefix site
+          chmod +x build_all_branches.sh
           ./build_all_branches.sh
 
-      - name: Deploy
+      - name: Add CNAME and nojekyll (if present)
+        run: |
+          if [ -f CNAME ]; then cp CNAME public/CNAME; fi
+          touch public/.nojekyll
+
+      - name: Deploy (gh-pages branch)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
           folder: public
+          clean: true
+          single-commit: true

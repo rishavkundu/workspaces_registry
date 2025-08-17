@@ -8,11 +8,18 @@ on:
       - 'gh-pages/**'
   workflow_dispatch: {}
 
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout (full history)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -21,6 +28,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
+          cache: npm
+          cache-dependency-path: |
+            processing/package-lock.json
+            site/package-lock.json
 
       - name: Install processing deps
         run: npm ci --prefix processing
@@ -28,11 +39,10 @@ jobs:
       - name: Generate registry payload (list.json, icons)
         run: node processing
 
-      - name: Make build script executable
-        run: chmod +x build_all_branches.sh
-
       - name: Build all branches
-        run: ./build_all_branches.sh
+        run: |
+          chmod +x build_all_branches.sh
+          ./build_all_branches.sh
 
       - name: Add CNAME and nojekyll (if present)
         run: |
