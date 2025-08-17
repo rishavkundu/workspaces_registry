@@ -47,11 +47,14 @@ export default function Home({ searchText }) {
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
     filteredworkspaces = filteredworkspaces.filter((i) => {
-      const category = (i.categories && i.categories.length > 0) ? i.categories.filter((i) =>
-        i.toLowerCase().includes(lowerSearch)
+      const category = (i.categories && i.categories.length > 0) ? i.categories.filter((c) =>
+        c.toLowerCase().includes(lowerSearch)
       ) : [];
+      const title = (i.friendly_name || "").toLowerCase();
+      const desc = (i.description || "").toLowerCase();
       return (
-        i.name.toLowerCase().includes(lowerSearch) ||
+        title.includes(lowerSearch) ||
+        desc.includes(lowerSearch) ||
         category.length > 0
       );
     });
