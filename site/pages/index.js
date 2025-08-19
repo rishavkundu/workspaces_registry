@@ -1,3 +1,4 @@
+// biome-ignore assist/source/organizeImports: ignore rule
 import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Workspace from '../components/Workspace'
@@ -42,7 +43,7 @@ export default function Home({ searchText }) {
     setVersion(version)
   }
 
-  let filteredworkspaces = workspaces && workspaces.workspaces && workspaces.workspaces.length > 0 ? [...workspaces.workspaces] : [];
+  let filteredworkspaces = workspaces?.workspaces?.length ? [...workspaces.workspaces] : [];
   filteredworkspaces = filteredworkspaces.filter((v) => v.compatibility.some((el) => el.version === version + '.x'))
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
@@ -84,9 +85,7 @@ export default function Home({ searchText }) {
           </span>
         </h1>
         <div className="flex flex-wrap gap-1 justify-center">
-        {filteredworkspaces && filteredworkspaces.length > 0 && filteredworkspaces.map(function (workspace, i) {
-            return <Workspace key={workspace.sha} workspace={workspace} />
-          })}
+        {filteredworkspaces && filteredworkspaces.length > 0 && filteredworkspaces.map((workspace, i) => <Workspace key={workspace.sha} workspace={workspace} />)}
           {filteredworkspaces && filteredworkspaces.length === 0 && (
             <p>No workspaces found {searchText !== '' && ('matching "' + searchText + '"')}</p>
           )}

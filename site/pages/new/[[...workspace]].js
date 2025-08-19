@@ -77,7 +77,11 @@ export default function New({ workspace }) {
       const workspaceDetails = allworkspaces.workspaces.find(el => el.friendly_name === atob(workspace[0]))
       delete workspaceDetails['sha']
       description.current.value = workspaceDetails.description
-      name.current.value = workspaceDetails.name
+      // Schema 1.1 removed top-level name; derive image from compatibility
+      const defaultImage = (workspaceDetails.compatibility && workspaceDetails.compatibility.length > 0)
+        ? workspaceDetails.compatibility[0].image
+        : ''
+      name.current.value = defaultImage
       friendly_name.current.value = workspaceDetails.friendly_name
       if (workspaceDetails.categories) {
         let catMap = []
@@ -100,7 +104,8 @@ export default function New({ workspace }) {
 
       setCombined({
         ...combined,
-        ...workspaceDetails
+        ...workspaceDetails,
+        name: defaultImage
       })
     }
   }, [workspace])
@@ -166,15 +171,15 @@ export default function New({ workspace }) {
   }
 
   function friendlyUrl(url) {
-    // make the url lowercase         
+    // make the url lowercase
     var encodedUrl = url.toString().toLowerCase();
-    // replace & with and           
+    // replace & with and
     encodedUrl = encodedUrl.split(/\&+/).join("-and-")
-    // remove invalid characters 
+    // remove invalid characters
     encodedUrl = encodedUrl.split(/[^a-z0-9]/).join("-");
-    // remove duplicates 
+    // remove duplicates
     encodedUrl = encodedUrl.split(/-+/).join("-");
-    // trim leading & trailing characters 
+    // trim leading & trailing characters
     encodedUrl = encodedUrl.trim('-');
     return encodedUrl;
   }
@@ -332,7 +337,7 @@ function Workspace({ workspace, icon, inlineImage }) {
     <div className={"rounded-xl group w-full shadow max-w-xs relative overflow-hidden h-[100px] border border-solid flex flex-col justify-between bg-slate-300 border-slate-400/50"}>
       <div className={"absolute top-0 left-0 right-0 h-[200px] transition-all" + (showDescription ? ' -translate-y-1/2' : '')}>
         <div onClick={() => setShowDescription(true)} className={"h-[100px] p-4 relative overflow-hidden cursor-pointer"}>
-          <img className="h-[90px] group-hover:scale-150 transition-all absolute left-2 top-1" src={workspace.image_src} onError={(e) => { 
+          <img className="h-[90px] group-hover:scale-150 transition-all absolute left-2 top-1" src={workspace.image_src} onError={(e) => {
             if ( inlineImage !== null) { e.target.src = inlineImage }}} alt={workspace.friendly_name} />
           <div className="flex-col pl-28">
             <div className="font-bold">{workspace.friendly_name || 'Friendly Name'}</div>

@@ -2,8 +2,9 @@ name: Build and Deploy Kasm Registry
 
 on:
   push:
-    branches-ignore:
-      - gh-pages
+    branches:
+      - main
+      - 'releases/**'
   workflow_dispatch: {}
 
 permissions:
