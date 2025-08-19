@@ -1,8 +1,8 @@
 FROM kasmweb/debian-bookworm-desktop:1.17.0
 
 LABEL "com.kasmweb.image"="true" \
-	"com.kasmweb.name"="NousVM XFCE" \
-	"com.kasmweb.description"="Debian 12 XFCE desktop with minimal tools and branding" \
+	"com.kasmweb.name"="NousDebianXFCE" \
+	"com.kasmweb.description"="Debian 12 XFCE desktop with Hermes agent stub" \
 	"com.kasmweb.version"="1.17.0"
 
 ENV DEBIAN_FRONTEND=noninteractive \
@@ -46,5 +46,3 @@ RUN printf '%s\n' \
 	&& chown -R 1000:1000 /home/kasm-user
 
 USER 1000
-
-

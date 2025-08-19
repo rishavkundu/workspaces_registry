@@ -41,7 +41,7 @@
 <img width="800" src="https://user-images.githubusercontent.com/5698566/230080486-08d4c678-a0bd-4f30-863b-5f7f0bb9182f.png" />
 
 1. Click on the green **Use this template** button.
-2. Select **Create a new repository** from the dropdown. 
+2. Select **Create a new repository** from the dropdown.
 
 
 ### Configure repository
@@ -51,9 +51,9 @@
 > **Note**
 > If you set the **Repository name** to `kasm-registry` you wont have to make any changes to the `baseUrl` later, unless you want to use a (sub)domain.
 
-1. Select a **Repository name**, this name will also be used later for the `baseUrl`, 
+1. Select a **Repository name**, this name will also be used later for the `baseUrl`,
 2. Make sure it's set as a **Public** repository
-3. Tick the **Include all branches** checkbox, 
+3. Tick the **Include all branches** checkbox,
 4. Click on the **Create repository from template** button.
 
 &nbsp;
@@ -77,7 +77,7 @@ Click on the **Actions** tab in the top menu and check whether workflows need en
 1. Go back to the `Code` tab
 1. Click the `site` folder
 2. Click on the `next.config.js` file
-1. Click the edit button. 
+1. Click the edit button.
 2. Fill in the `env` section with the relevant information and change the basePath if needed (details below).
 
 ### Settings definitions
@@ -113,7 +113,7 @@ Click on the **Actions** tab in the top menu and check whether workflows need en
 > If you ticked the "Include all branches" checkbox in step 1, this should all be set up for you, if not, just follow the instructions below
 
 1. Go to the **Settings** top menu tab
-2. Click the **Pages** left menu item 
+2. Click the **Pages** left menu item
 3. In the **Build and deployment** section, under the **Branch** heading, make sure the dropdown is set to gh-pages, if not, set it and click **Save**.
 
 ### Visit the site
@@ -128,7 +128,7 @@ Then congratulations, you should have a working site! Just click the **Visit Sit
 
 If you don't see that button yet, then not to worry, it's likely that you are just too quick (also if you do see the button but it doesn't reflect the changes you made, this next bit is relevant as well)
 
-Check on the CI progress in the **Actions** tab, 
+Check on the CI progress in the **Actions** tab,
 
 <img width="600" alt="image" src="https://user-images.githubusercontent.com/5698566/230061667-63829dbd-46f2-4f7b-96c4-0cab8279e8a6.png" />
 
@@ -259,7 +259,7 @@ The compatibility property is an array of objects and needs a bit more explanati
 * **version** - This is the version of kasm the entry is compatible with
 * **image** - The docker image. The tag is included for things like estimating the size and is used if there are no available_tags.
 * **uncompressed_size_mb** - Integer of the approximate size of the workspace when it’s uncompressed in MB. This doesn’t take into account layers. For example if an image is 2.46GB you would enter 2460
-* **available_tags** - These values are what will determine the available "channels" on the front end. If you don't want/need channels, remove the available_tags section completely. You shouldn't mix and match though, if you specify available_tags for 1 workspace, it should be specified for all of them. That doesn't mean every workspace has to have all the same tags, if a workspace only has develop tags then it will only show when develop is the selected channel. 
+* **available_tags** - These values are what will determine the available "channels" on the front end. If you don't want/need channels, remove the available_tags section completely. You shouldn't mix and match though, if you specify available_tags for 1 workspace, it should be specified for all of them. That doesn't mean every workspace has to have all the same tags, if a workspace only has develop tags then it will only show when develop is the selected channel.
 
 Head to the **Actions** tab to check your progress and once `Page build and deployment` is complete, your site should be ready.
 
@@ -277,9 +277,9 @@ npm install
 node add_next_version.js
 ```
 
-This will add a new entry for every single workspace, but the size will be set to 0, this is so you can run the `get_image_sizes.js` script. This will loop through each `image` that has an uncompressed_size_mb of 0 and will pull the image, get the size, update the workspace json and remove the image. 
+This will add a new entry for every single workspace, but the size will be set to 0, this is so you can run the `get_image_sizes.js` script. This will loop through each `image` that has an uncompressed_size_mb of 0 and will pull the image, get the size, update the workspace json and remove the image.
 
-This can take a long time if you have a lot of workspaces and dependng on their sizes, but if the script crashes out, you can just start it agin and it will carry on from where it left off. 
+This can take a long time if you have a lot of workspaces and dependng on their sizes, but if the script crashes out, you can just start it agin and it will carry on from where it left off.
 
 ```
 node add_next_version.js

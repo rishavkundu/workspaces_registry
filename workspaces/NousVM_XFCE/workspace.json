@@ -1,32 +1,32 @@
 {
-	"description": "NousVM Debian XFCE desktop with KasmVNC, minimal tools, and Hermes agent.",
-	"docker_registry": "https://ghcr.io",
-	"image_src": "nousvm-xfce.png",
-	"run_config": {
-		"hostname": "kasm",
-		"cpu_allocation_method": "Shares",
-		"cpu_shares": 1024,
-		"memory": 2147483648,
-		"shm_size": 536870912
-	},
-	"exec_config": {
-		"first_launch": {
-			"cmd": "bash -c 'if [ -f /dockerstartup/custom_startup.sh ]; then /dockerstartup/custom_startup.sh; fi'",
-			"environment": {}
-		}
-	},
-	"categories": ["Desktop", "Development"],
-	"friendly_name": "NousVM XFCE",
-	"architecture": ["amd64"],
-	"compatibility": [
-		{
-			"version": "1.17.x",
-			"image": "ghcr.io/rishavkundu/nousvm-xfce:1.17.0",
-			"uncompressed_size_mb": 0,
-			"available_tags": ["develop", "1.17.0", "latest"]
-		}
-	],
-	"persistent_profile_path": "/home/kasm-user",
-	"volume_mappings": {},
-	"notes": "Custom Debian 12 XFCE desktop with Hermes agent for workspace management."
+    "description": "Debian 12 XFCE desktop with Hermes agent stub",
+    "docker_registry": "https://ghcr.io",
+    "image_src": "NousDebianXFCE.png",
+    "run_config": {
+        "hostname": "kasm",
+        "cpu_allocation_method": "Shares",
+        "cpu_shares": 1024,
+        "memory": 2147483648,
+        "shm_size": 536870912
+    },
+    "exec_config": {
+        "first_launch": {
+            "cmd": "bash -c 'if [ -f /dockerstartup/custom_startup.sh ]; then /dockerstartup/custom_startup.sh; fi'",
+            "environment": {}
+        }
+    },
+    "categories": ["Desktop", "Development"],
+    "friendly_name": "NousVM XFCE",
+    "architecture": ["amd64"],
+    "compatibility": [
+        {
+            "version": "1.17.x",
+            "image": "ghcr.io/rishavkundu/kasm-workspace-debian-minimal:latest",
+            "uncompressed_size_mb": 0,
+            "available_tags": ["develop", "1.17.0", "latest"]
+        }
+    ],
+    "persistent_profile_path": "/home/kasm-user",
+    "volume_mappings": {},
+    "notes": "Custom Debian 12 XFCE desktop with Hermes agent for workspace management."
 }
