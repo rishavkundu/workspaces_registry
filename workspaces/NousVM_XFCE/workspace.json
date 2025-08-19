@@ -16,7 +16,7 @@
         }
     },
     "categories": ["Desktop", "Development"],
-    "friendly_name": "NousVM XFCE",
+    "friendly_name": "NousDebian",
     "architecture": ["amd64"],
     "compatibility": [
         {
