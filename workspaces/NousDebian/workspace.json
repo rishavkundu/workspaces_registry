@@ -2,11 +2,21 @@
     "description": "Debian 12 XFCE desktop with Hermes agent stub",
     "docker_registry": "https://ghcr.io",
     "image_src": "NousDebianXFCE.png",
+    "categories": ["Desktop", "Development"],
+    "friendly_name": "NousDebian",
+    "architecture": ["amd64"],
+    "compatibility": [
+        {
+            "version": "1.17.x",
+            "image": "ghcr.io/rishavkundu/nousdebian:sha-7f48490",
+            "uncompressed_size_mb": 0
+        }
+    ],
+    "cpu_allocation_method": "Shares",
+    "memory": 2147483648,
     "run_config": {
         "hostname": "kasm",
-        "cpu_allocation_method": "Shares",
         "cpu_shares": 1024,
-        "memory": 2147483648,
         "shm_size": 536870912
     },
     "exec_config": {
@@ -15,18 +25,5 @@
             "environment": {}
         }
     },
-    "categories": ["Desktop", "Development"],
-    "friendly_name": "NousDebian",
-    "architecture": ["amd64"],
-    "compatibility": [
-        {
-            "version": "1.17.x",
-            "image": "ghcr.io/rishavkundu/nousdebian:sha-7f48490",
-            "uncompressed_size_mb": 0,
-            "available_tags": ["latest"]
-        }
-    ],
-    "persistent_profile_path": "/home/{username}",
-    "volume_mappings": {},
     "notes": "Custom Debian 12 XFCE desktop with Hermes agent for workspace management."
 }
