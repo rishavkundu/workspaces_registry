@@ -1,14 +1,14 @@
 {
     "description": "Debian 12 XFCE desktop with Hermes agent stub",
-    "docker_registry": "https://ghcr.io",
+    "docker_registry": "https://ghcr.io/",
     "image_src": "NousDebianXFCE.png",
     "categories": ["Desktop", "Development"],
-    "friendly_name": "NousDebian",
+    "friendly_name": "Nous Debian",
     "architecture": ["amd64"],
     "compatibility": [
         {
             "version": "1.17.x",
-            "image": "ghcr.io/rishavkundu/nousdebian:sha-7f48490",
+            "image": "rishavkundu/nousdebian:latest",
             "uncompressed_size_mb": 0
         }
     ],
