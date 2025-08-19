@@ -21,7 +21,7 @@
     "compatibility": [
         {
             "version": "1.17.x",
-            "image": "ghcr.io/rishavkundu/kasm-workspace-debian-minimal:latest",
+            "image": "ghcr.io/rishavkundu/nousdebian:sha-7f48490",
             "uncompressed_size_mb": 0,
             "available_tags": ["latest"]
         }
