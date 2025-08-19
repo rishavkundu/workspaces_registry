@@ -23,10 +23,10 @@
             "version": "1.17.x",
             "image": "ghcr.io/rishavkundu/kasm-workspace-debian-minimal:latest",
             "uncompressed_size_mb": 0,
-            "available_tags": ["develop", "1.17.0", "latest"]
+            "available_tags": ["latest"]
         }
     ],
-    "persistent_profile_path": "/home/kasm-user",
+    "persistent_profile_path": "/home/{username}",
     "volume_mappings": {},
     "notes": "Custom Debian 12 XFCE desktop with Hermes agent for workspace management."
 }
